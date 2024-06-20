@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.py.javaf1.Controller.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <Label text="欢迎使用图书管理系统" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="读者登录" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="用户名:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="密码:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Button text="登录" onAction="#handleLogin" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="center">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="管理员登录" onAction="#switchToAdminLogin"/>
+            <Button text="注册" onAction="#switchToRegist"/>
+        </HBox>
+    </bottom>
+</BorderPane>
