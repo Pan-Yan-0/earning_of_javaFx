@@ -31,7 +31,7 @@ public class RegistController {
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View" +
                     ".fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("Login");
@@ -46,12 +46,12 @@ public class RegistController {
         String repeatPassword = repeatPasswordField.getText();
         String studentNumber = studentNumberField.getText();
         String username = usernameField.getText();
-        if (studentNumber.isEmpty()) {
-            showAlert("Regist Failed", "学号为空！！！！！");
-            return;
-        }
         if (username.isEmpty()) {
             showAlert("Regist Failed", "用户名为空！！！！！！");
+            return;
+        }
+        if (studentNumber.isEmpty()) {
+            showAlert("Regist Failed", "学号为空！！！！！");
             return;
         }
         if (password.isEmpty() || repeatPassword.isEmpty()) {

@@ -25,6 +25,7 @@
             </padding>
             <Button text="管理员登录" onAction="#switchToAdminLogin"/>
             <Button text="注册" onAction="#switchToRegist"/>
+            <Button text="忘记密码" onAction="#switchToForgetPassword" />
         </HBox>
     </bottom>
 </BorderPane>

@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     ///com/py/javaf1/View/hello-view.fxml
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 400, 320);
         stage.setTitle("ReaderLogin");
         stage.setScene(scene);
         stage.show();

@@ -32,14 +32,17 @@ public class LoginController {
         String password = passwordField.getText();
         if (username.isEmpty()){
             showAlert("Login Failed", "用户名为空！！！！！");
+            return;
         }
         if (password.isEmpty()){
             showAlert("Login Failed", "密码为空！！！！！");
+            return;
         }
         // 简单的身份验证逻辑，可以根据需要进行扩展
         if (efficacy(username,password)) {
             showAlert("Login Successful", "Welcome, Reader!");
             // 在这里可以跳转到读者主界面
+
         } else {
             showAlert("Login Failed", "用户名或者密码错误！！！！！");
             passwordField.setText("");
@@ -80,7 +83,7 @@ public class LoginController {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminLoginView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("AdminLogin");
@@ -104,10 +107,26 @@ public class LoginController {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/RegistReader.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("Regist");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToForgetPassword() {
+        try {
+            // 获取当前窗口
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            // 加载管理员登录界面
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ForgetPasswordView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            // 设置新场景
+            stage.setScene(scene);
+            stage.setTitle("ForgetPassword");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
