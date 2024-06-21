@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.py.javaf1.Controller.AdminMainController"
+            prefHeight="400.0" prefWidth="600.0">
+    <top>
+        <Label fx:id="title" text="高校图书馆管理系统 - 管理员界面" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <Button text="添加书籍" onAction="#handleAddBook" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button text="修改书籍" onAction="#handleEditBook" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button text="删除书籍" onAction="#handleDeleteBook" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button text="查找书籍" onAction="#handleSearchBook" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button text="查找读者信息" onAction="#handleSearchReader" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button text="修改读者信息" onAction="#handleEditReader" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        </GridPane>
+    </center>
+    <bottom>
+        <Button text="退出登录" onAction="#handleLogout" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane >
