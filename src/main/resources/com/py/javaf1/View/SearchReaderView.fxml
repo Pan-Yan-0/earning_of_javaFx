@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.py.javaf1.Controller.SearchReaderController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <Label text="查找方式:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="searchTypeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="按属性查找"/>
+                        <String fx:value="全体查找"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="属性:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="attributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="读者编号"/>
+                        <String fx:value="姓名"/>
+                        <String fx:value="学号"/>
+                        <String fx:value="可借数量"/>
+                        <String fx:value="是否有超期未还"/>
+                        <String fx:value="是否有欠费"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="属性值:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="attributeValueField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Button text="查找" onAction="#handleSearchReader" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <TextArea fx:id="resultArea" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" prefRowCount="10" prefColumnCount="30"/>
+        </GridPane>
+    </center>
+</BorderPane>

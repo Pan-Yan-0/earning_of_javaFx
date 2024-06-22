@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.py.javaf1.Controller.EditBookController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <Label text="图书编号:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="bookIDField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Button text="查找" onAction="#handleSearchBook" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label fx:id="showResult" text=""  GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <Label text="书名:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="titleField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="" fx:id="nowBook" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <Label text="作者:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="authorField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="" fx:id="nowAuthor" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <Label text="出版社:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="publisherField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="" fx:id="nowPublisher" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <Label text="总册数:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="totalCopiesField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="" fx:id="nowTotalCopies" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+            <Label text="现存地址:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="locationField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="" fx:id="nowLocation" GridPane.rowIndex="6" GridPane.columnIndex="2"/>
+            <Button text="确认修改" onAction="#handleEditBook" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <Button text="返回管理员选择界面" onAction="#handleReturnAdminMain" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+        </GridPane>
+
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="center">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

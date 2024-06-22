@@ -29,15 +29,46 @@ public class AdminMainController {
     }
 
     public void handleEditBook() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/EditBookView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("EditBook");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleDeleteBook() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/DeleteBookView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("DeleteBook");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleSearchBook() {
     }
 
     public void handleSearchReader() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/SearchReaderView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("SearchReader");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void handleEditReader() {
