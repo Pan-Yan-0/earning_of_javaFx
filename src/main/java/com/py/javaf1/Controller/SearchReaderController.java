@@ -1,22 +1,24 @@
 package com.py.javaf1.Controller;
 
+import com.py.javaf1.domain.Reader;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
-import java.io.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-* @TODO 这里要加几个
-* 查找欠费的人信息什么的
-* */
 public class SearchReaderController {
+
     @FXML
     private ComboBox<String> searchTypeComboBox;
     @FXML
@@ -24,37 +26,74 @@ public class SearchReaderController {
     @FXML
     private TextField attributeValueField;
     @FXML
-    private TextArea resultArea;
+    private CheckBox overdueCheckBox;
+    @FXML
+    private CheckBox debtCheckBox;
+    @FXML
+    private TableView<Reader> readerTable;
+    @FXML
+    private TableColumn<Reader, Integer> indexColumn;
+    @FXML
+    private TableColumn<Reader, String> readerIDColumn;
+    @FXML
+    private TableColumn<Reader, String> nameColumn;
+    @FXML
+    private TableColumn<Reader, String> studentIDColumn;
+    @FXML
+    private TableColumn<Reader, Integer> borrowLimitColumn;
+    @FXML
+    private TableColumn<Reader, String> overdueColumn;
+    @FXML
+    private TableColumn<Reader, String> debtColumn;
+    @FXML
+    private TableColumn<Reader, Integer> overdueCountColumn;
+    @FXML
+    private TableColumn<Reader, Double> debtAmountColumn;
+
+    private ObservableList<Reader> readerData = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
-        searchTypeComboBox.setItems(FXCollections.observableArrayList("按属性查找", "全体查找"));
-        searchTypeComboBox.setValue("按属性查找");
+        searchTypeComboBox.setItems(FXCollections.observableArrayList("模糊查找", "全体查找"));
+        searchTypeComboBox.setValue("模糊查找");
 
         attributeComboBox.setItems(FXCollections.observableArrayList("读者编号", "姓名", "学号", "可借数量", "是否有超期未还", "是否有欠费"));
         attributeComboBox.setValue("读者编号");
+
+        indexColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(readerTable.getItems().indexOf(cellData.getValue()) + 1));
+        readerIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getReaderID()));
+        nameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getName()));
+        studentIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getStudentID()));
+        borrowLimitColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getBorrowLimit()));
+        overdueColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getHasOverdue() > 0 ? "是" : "否"));
+        debtColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getHasDebt() > 0 ? "是" : "否"));
+        overdueCountColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getHasOverdue()));
+        debtAmountColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getHasDebt()));
+
+        readerTable.setItems(readerData);
     }
 
     @FXML
     private void handleSearchReader() {
-        resultArea.clear();
+        readerData.clear();
         String searchType = searchTypeComboBox.getValue();
         String attribute = attributeComboBox.getValue();
-        String attributeValue = attributeValueField.getText();
+        String attributeValue = attributeValueField.getText().trim().toLowerCase();
+        boolean overdue = overdueCheckBox.isSelected();
+        boolean debt = debtCheckBox.isSelected();
 
-
-        List<String[]> matchingReaders = new ArrayList<>();
+        List<Reader> matchingReaders = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/py/javaf1/Data/ReaderData"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] details = line.split(",");
-                if (searchType.equals("按属性查找")) {
-                    if (attributeMatches(details, attribute, attributeValue)) {
-                        matchingReaders.add(details);
+                if (searchType.equals("模糊查找")) {
+                    if (attributeMatches(details, attribute, attributeValue, overdue, debt)) {
+                        matchingReaders.add(createReader(details));
                     }
                 } else {
-                    matchingReaders.add(details);
+                    matchingReaders.add(createReader(details));
                 }
             }
         } catch (IOException e) {
@@ -65,41 +104,40 @@ public class SearchReaderController {
         if (matchingReaders.isEmpty()) {
             showAlert("查找失败", "没有找到符合条件的读者！");
         } else {
-            for (String[] details : matchingReaders) {
-                resultArea.appendText("读者编号: " + details[0] + "\n");
-                resultArea.appendText("姓名: " + details[1] + "\n");
-                resultArea.appendText("学号: " + details[2] + "\n");
-                resultArea.appendText("可借数量: " + details[3] + "\n");
-                resultArea.appendText("是否有超期未还: " + details[4] + "\n");
-                resultArea.appendText("是否有欠费: " + details[5] + "\n\n");
-            }
+            readerData.addAll(matchingReaders);
         }
     }
 
-    private boolean attributeMatches(String[] details, String attribute, String attributeValue) {
+    private boolean attributeMatches(String[] details, String attribute, String attributeValue, boolean overdue, boolean debt) {
         switch (attribute) {
             case "读者编号":
-                return details[0].equalsIgnoreCase(attributeValue);
+                return details[2].toLowerCase().contains(attributeValue);
             case "姓名":
-                return details[1].equalsIgnoreCase(attributeValue);
+                return details[0].toLowerCase().contains(attributeValue);
             case "学号":
-                return details[2].equalsIgnoreCase(attributeValue);
+                return details[3].toLowerCase().contains(attributeValue);
             case "可借数量":
-                return details[3].equals(attributeValue);
+                return details[4].toLowerCase().contains(attributeValue);
             case "是否有超期未还":
-                return details[4].equalsIgnoreCase(attributeValue);
+                return (overdue && Integer.parseInt(details[5]) > 0) || (!overdue && Integer.parseInt(details[5]) == 0);
             case "是否有欠费":
-                return details[5].equalsIgnoreCase(attributeValue);
+                return (debt && Double.parseDouble(details[6]) > 0) || (!debt && Double.parseDouble(details[6]) == 0);
             default:
                 return false;
         }
     }
 
-    private void showAlert(String title, String message) {
+    private Reader createReader(String[] details) {
+        return new Reader(details[0], "", details[2], details[3], Integer.parseInt(details[4]),
+                Integer.parseInt(details[5]), Double.parseDouble(details[6]));
+    }
+
+    private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText(content);
         alert.showAndWait();
     }
+
 }

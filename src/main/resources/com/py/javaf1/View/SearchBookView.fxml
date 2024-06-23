@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox spacing="10" alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.py.javaf1.Controller.SearchBookController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <HBox spacing="10">
+        <Label text="搜索书籍:"/>
+        <TextField fx:id="searchField" promptText="输入书名、作者或出版社"/>
+        <Button text="搜索" onAction="#handleSearch"/>
+        <Button text="查看所有书籍" onAction="#handleShowAll"/>
+    </HBox>
+    <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="图书编号"/>
+            <TableColumn fx:id="titleColumn" text="书名"/>
+            <TableColumn fx:id="authorColumn" text="作者"/>
+            <TableColumn fx:id="publisherColumn" text="出版社"/>
+            <TableColumn fx:id="totalCopiesColumn" text="总册数"/>
+            <TableColumn fx:id="availableCopiesColumn" text="可借数量"/>
+            <TableColumn fx:id="locationColumn" text="存放位置"/>
+            <TableColumn fx:id="borrowCountColumn" text="借阅次数"/>
+        </columns>
+    </TableView>
+</VBox>

@@ -64,7 +64,7 @@ public class EditBookController {
             boolean change = false;
             while ((line = reader.readLine()) != null) {
                 String[] bookDetails = line.split(",");
-                Book newBook = null;
+                Book newBook = new Book();
                 if (bookDetails.length == 8) {
                     String fileBookId = bookDetails[0];
                     newBook = new Book(fileBookId, bookDetails[1], bookDetails[2], bookDetails[3],

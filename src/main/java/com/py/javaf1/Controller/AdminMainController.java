@@ -1,5 +1,4 @@
 package com.py.javaf1.Controller;
-
 import com.py.javaf1.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,6 +54,16 @@ public class AdminMainController {
     }
 
     public void handleSearchBook() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/SearchBookView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("SearchBook");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleSearchReader() {
@@ -72,12 +81,31 @@ public class AdminMainController {
     }
 
     public void handleEditReader() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/ModifyReaderView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("ModifyReader");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleLogout() {
         // 退出登录
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
+                    "/AdminLoginView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) title.getScene().getWindow();
+            stage.setTitle("AdminLogin");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(String title, String message) {
