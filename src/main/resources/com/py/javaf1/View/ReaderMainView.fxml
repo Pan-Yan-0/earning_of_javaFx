@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.ReaderMainController">
+    <left>
+        <VBox spacing="10">
+            <children>
+                <Button text="查询个人信息" onAction="#handleShowPersonalInfo" />
+                <Button text="查询书籍" onAction="#handleShowSearchBooks" />
+                <Button text="查询已经借阅的书籍" onAction="#handleShowBorrowedBooks" />
+                <Button text="查询历史借阅记录" onAction="#handleShowBorrowHistory" />
+                <Button text="查询榜单" onAction="#handleShowRankings" />
+                <Button text="借阅书籍" onAction="#handleShowBorrowBooks" />
+                <Button text="退出登录" onAction="#returnToLogin"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+        </VBox>
+
+    </left>
+    <center>
+        <StackPane fx:id="contentPane" />
+    </center>
+</BorderPane>

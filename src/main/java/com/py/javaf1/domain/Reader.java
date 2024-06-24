@@ -15,4 +15,5 @@ public class Reader {
     private int borrowLimit;        // 可借数量
     private int hasOverdue;     // 有无超期未还
     private double hasDebt;        // 有无欠费
+
 }

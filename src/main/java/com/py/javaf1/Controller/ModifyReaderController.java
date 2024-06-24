@@ -47,7 +47,7 @@ public class ModifyReaderController {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] details = line.split(",");
-                readerList.add(new Reader(details[0], "", details[2], details[3], Integer.parseInt(details[4]),
+                readerList.add(new Reader(details[0], details[1], details[2], details[3], Integer.parseInt(details[4]),
                         Integer.parseInt(details[5]), Double.parseDouble(details[6])));
             }
         } catch (IOException e) {
@@ -117,8 +117,9 @@ public class ModifyReaderController {
         try (BufferedWriter writer =
                      new BufferedWriter(new FileWriter("src/main/java/com/py/javaf1/Data/ReaderData"))) {
             for (Reader reader : readerList) {
-                writer.write(String.format("%s,%s,%s,%d,%d,%.2f%n",
+                writer.write(String.format("%s,%s,%s,%s,%d,%d,%.2f%n",
                         reader.getName(),
+                        reader.getPassword(),
                         reader.getReaderID(),
                         reader.getStudentID(),
                         reader.getBorrowLimit(),

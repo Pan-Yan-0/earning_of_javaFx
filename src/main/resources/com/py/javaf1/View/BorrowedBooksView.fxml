@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.BorrowBookController">
+    <children>
+        <TableView fx:id="bookTable" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="bookIDColumn" text="Book ID" />
+                <TableColumn fx:id="titleColumn" text="Title" />
+                <TableColumn fx:id="authorColumn" text="Author" />
+                <TableColumn fx:id="publisherColumn" text="Publisher" />
+                <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
+                <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
+                <TableColumn fx:id="locationColumn" text="Location" />
+                <TableColumn fx:id="borrowCountColumn" text="Borrow Count" />
+                <TableColumn fx:id="selectColumn" text="Select" />
+            </columns>
+        </TableView>
+        <Button layoutX="530.0" layoutY="430.0" text="Borrow Selected Books" onAction="#handleBorrowSelectedBooks" />
+    </children>
+</AnchorPane>

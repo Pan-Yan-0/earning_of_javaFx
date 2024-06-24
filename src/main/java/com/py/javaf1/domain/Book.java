@@ -1,5 +1,7 @@
 package com.py.javaf1.domain;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +19,5 @@ public class Book {
     int availableCopies;    // 在馆册数
     String location;        // 现存地址
     int borrowCount;        // 借阅次数
-
 
 }

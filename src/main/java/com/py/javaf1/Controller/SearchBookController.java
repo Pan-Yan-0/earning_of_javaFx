@@ -5,10 +5,15 @@ import com.py.javaf1.domain.BookWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +21,8 @@ public class SearchBookController {
 
     @FXML
     private TextField searchField;
+    @FXML
+    private ComboBox<String> attributeComboBox;
     @FXML
     private TableView<BookWrapper> bookTable;
     @FXML
@@ -39,6 +46,8 @@ public class SearchBookController {
 
     public void initialize() {
         setupTableColumns();
+        loadBook();
+        attributeComboBox.getSelectionModel().selectFirst(); // 默认选择第一个属性
     }
 
     private void setupTableColumns() {
@@ -52,15 +61,54 @@ public class SearchBookController {
         borrowCountColumn.setCellValueFactory(cellData -> cellData.getValue().borrowCountProperty().asObject());
     }
 
+
+    private void loadBook() {
+        ArrayList<Book> books = new ArrayList<>();
+        try {
+            FileReader fileReader = new FileReader("src/main/java/com/py/javaf1/Data/BookData");
+            BufferedReader reader = new BufferedReader(fileReader);
+            String line;
+            boolean change = false;
+            while ((line = reader.readLine()) != null) {
+                String[] bookDetails = line.split(",");
+                Book newBook = new Book();
+                if (bookDetails.length == 8) {
+                    String fileBookId = bookDetails[0];
+                    newBook = new Book(fileBookId, bookDetails[1], bookDetails[2], bookDetails[3],
+                            Integer.parseInt(bookDetails[4]), Integer.parseInt(bookDetails[5]), bookDetails[6],
+                            Integer.parseInt(bookDetails[7]));
+                }
+                books.add(newBook);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        setBookData(books);
+    }
+
     @FXML
     private void handleSearch() {
         String keyword = searchField.getText().trim().toLowerCase();
+        String selectedAttribute = attributeComboBox.getValue();
+
         List<BookWrapper> filteredBooks = bookData.stream()
-                .filter(bookWrapper ->
-                        bookWrapper.getBook().getTitle().toLowerCase().contains(keyword) ||
-                                bookWrapper.getBook().getAuthor().toLowerCase().contains(keyword) ||
-                                bookWrapper.getBook().getPublisher().toLowerCase().contains(keyword))
+                .filter(bookWrapper -> {
+                    Book book = bookWrapper.getBook();
+                    switch (selectedAttribute) {
+                        case "书籍编号":
+                            return book.getBookID().toLowerCase().contains(keyword);
+                        case "书名":
+                            return book.getTitle().toLowerCase().contains(keyword);
+                        case "作者":
+                            return book.getAuthor().toLowerCase().contains(keyword);
+                        case "出版社":
+                            return book.getPublisher().toLowerCase().contains(keyword);
+                        default:
+                            return false;
+                    }
+                })
                 .collect(Collectors.toList());
+
         bookTable.setItems(FXCollections.observableArrayList(filteredBooks));
     }
 
@@ -77,3 +125,5 @@ public class SearchBookController {
         bookTable.setItems(bookData);
     }
 }
+
+
