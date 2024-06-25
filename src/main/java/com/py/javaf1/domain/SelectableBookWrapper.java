@@ -2,13 +2,17 @@ package com.py.javaf1.domain;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.FXML;
 
 public class SelectableBookWrapper {
-    private BookWrapper book;
-    private BooleanProperty selected = new SimpleBooleanProperty(false);
+    @FXML
+    private final BookWrapper book;
+    @FXML
+    private final BooleanProperty selected;
 
     public SelectableBookWrapper(BookWrapper book) {
         this.book = book;
+        this.selected = new SimpleBooleanProperty(false);
     }
 
     public BookWrapper getBook() {

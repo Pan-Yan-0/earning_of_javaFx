@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class LoginController {
     public static String loginName = null;
+    public static String readerId = null;
     @FXML
     private TextField usernameField;
 
@@ -77,6 +78,7 @@ public class LoginController {
                     Reader readerObj = new Reader(fileUsername, filePassword, userDetails[2], userDetails[3],
                             Integer.parseInt(userDetails[4]), Integer.parseInt(userDetails[5]),
                             Double.parseDouble(userDetails[6]));
+                    readerId = readerObj.getReaderID();
                     // 验证用户名和密码
                     if (readerObj.getName().equals(username) && readerObj.getPassword().equals(password)) {
                         return true;

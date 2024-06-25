@@ -156,7 +156,7 @@ public class BorrowBookController {
                 .filter(SelectableBookWrapper::isSelected)
                 .collect(Collectors.toList());
 
-        List<BorrowRecord> borrowRecords = loadBorrowRecords();
+        List<BorrowRecord> borrowRecords = new ArrayList<>();
 
         for (SelectableBookWrapper wrapper : selectedBooks) {
             Book book = wrapper.getBook().getBook();
@@ -166,28 +166,23 @@ public class BorrowBookController {
                 BorrowRecord borrowRecord = new BorrowRecord(LoginController.readerId, book.getBookID(), new Date());
                 borrowRecords.add(borrowRecord);
             } else {
-                System.out.println("书籍《" + book.getTitle() + "》已无可借阅的副本。");
+                showAlert("失败","书籍《" + book.getTitle() + "》已无可借阅的副本。");
+                return;
             }
         }
 
         saveBorrowRecords(borrowRecords);
         saveBookData();
+        loadBookData();  // 重新加载书籍数据，刷新展示
+        showAlert("成功","已经借阅书籍！！！");
         bookTable.refresh();
     }
 
     private List<BorrowRecord> loadBorrowRecords() {
         List<BorrowRecord> borrowRecords = new ArrayList<>();
-        File file = new File("src/main/java/com/py/javaf1/Data/BorrowRecord");
 
-        if (!file.exists() || file.length() == 0) {
-            return borrowRecords; // Return an empty list if the file does not exist or is empty
-        }
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/main/java/com/py/javaf1/Data/BorrowRecord"))) {
             borrowRecords = (List<BorrowRecord>) ois.readObject();
-        } catch (EOFException e) {
-            // Handle EOFException separately if needed, though this should not occur with the length check above
-            System.out.println("BorrowRecord file is empty or corrupted.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -195,8 +190,13 @@ public class BorrowBookController {
     }
 
     private void saveBorrowRecords(List<BorrowRecord> borrowRecords) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/main/java/com/py/javaf1/Data/BorrowRecord"))) {
-            oos.writeObject(borrowRecords);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/com/py/javaf1/Data" +
+                "/BorrowRecord", true))) {
+            for (BorrowRecord borrowRecord : borrowRecords) {
+                String writeDetails = String.join(",",borrowRecord.getReaderID(),borrowRecord.getBookID(),borrowRecord.getBorrowDate().toString());
+                writer.write(writeDetails);
+                writer.newLine();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -216,5 +216,12 @@ public class BorrowBookController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
