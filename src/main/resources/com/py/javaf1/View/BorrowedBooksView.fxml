@@ -1,23 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.BorrowBookController">
     <children>
-        <TableView fx:id="bookTable" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0">
-            <columns>
-                <TableColumn fx:id="bookIDColumn" text="Book ID" />
-                <TableColumn fx:id="titleColumn" text="Title" />
-                <TableColumn fx:id="authorColumn" text="Author" />
-                <TableColumn fx:id="publisherColumn" text="Publisher" />
-                <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
-                <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
-                <TableColumn fx:id="locationColumn" text="Location" />
-                <TableColumn fx:id="borrowCountColumn" text="Borrow Count" />
-                <TableColumn fx:id="selectColumn" text="Select" />
-            </columns>
-        </TableView>
-        <Button layoutX="530.0" layoutY="430.0" text="Borrow Selected Books" onAction="#handleBorrowSelectedBooks" />
+        <VBox spacing="10">
+            <HBox spacing="10" alignment="CENTER">
+                <children>
+                    <Label text="搜索属性：" />
+                    <ComboBox fx:id="attributeComboBox">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="书籍编号" />
+                                <String fx:value="书名" />
+                                <String fx:value="作者" />
+                                <String fx:value="出版社" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <TextField fx:id="searchField" promptText="输入关键字" />
+                    <Button text="搜索" onAction="#handleSearch" />
+                    <Button text="查看所有书籍" onAction="#handleShowAll" />
+                </children>
+            </HBox>
+            <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="bookIDColumn" text="书籍编号">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="bookID" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="titleColumn" text="书名">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="title" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="authorColumn" text="作者">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="author" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="publisherColumn" text="出版社">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="publisher" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="totalCopiesColumn" text="总共册数">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="totalCopies" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="availableCopiesColumn" text="在馆册数">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="availableCopies" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="locationColumn" text="现存地址">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="location" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="borrowCountColumn" text="借阅次数">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="borrowCount" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="selectColumn" text="选择"/>
+                </columns>
+            </TableView>
+            <Button text="借阅选中书籍" onAction="#handleBorrowSelectedBooks" />
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+        </VBox>
     </children>
 </AnchorPane>
