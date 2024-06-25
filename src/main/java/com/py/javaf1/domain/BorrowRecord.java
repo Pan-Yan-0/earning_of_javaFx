@@ -12,10 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class BorrowRecord {
     private static final long serialVersionUID = 1L;
-
-
-
     String readerID;        // 读者编号
     String bookID;          // 图书编号
-    Date borrowDate;        // 借阅时间
+    String borrowDate;        // 借阅时间
+    String returnDate;        // 归还时间
 }

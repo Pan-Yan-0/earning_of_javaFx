@@ -34,7 +34,7 @@ public class ReaderMainController {
 
     @FXML
     private void handleShowBorrowHistory() throws IOException {
-        loadContent("BorrowHistoryView.fxml");
+        loadContent("HistoryBorrowView.fxml");
     }
 
     @FXML
