@@ -5,11 +5,17 @@
 <?import javafx.geometry.Insets?>
 
 <!-- 布局设置为BorderPane，界面分为上下两个部分 -->
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            styleClass="anchor"
             fx:controller="com.py.javaf1.Controller.LoginController"
             prefHeight="400.0" prefWidth="600.0">
-
+    <stylesheets>
+        <URL value="@../Style/hello-view.css" />
+    </stylesheets>
     <!-- 中心部分使用GridPane布局 -->
     <center>
         <GridPane alignment="center" hgap="10" vgap="10">

@@ -31,7 +31,7 @@ public class RegistController {
         try {
             Stage stage = (Stage) usernameField.getScene().getWindow(); // 获取当前窗口
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             stage.setScene(scene); // 设置新场景
             stage.setTitle("Login"); // 设置窗口标题
             stage.show();

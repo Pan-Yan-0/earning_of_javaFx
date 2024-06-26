@@ -97,7 +97,7 @@ public class AdminLoginController {
     private void switchToReaderLogin() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setTitle("ReaderLogin");
             stage.setScene(scene);

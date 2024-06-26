@@ -6,10 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            styleClass="anchor"
             fx:controller="com.py.javaf1.Controller.AdminMainController"
             prefHeight="400.0" prefWidth="600.0">
+    <stylesheets>
+        <URL value="@../Style/hello-view.css" />
+    </stylesheets>
     <top>
         <!-- 标题标签，位于界面顶部 -->
         <Label fx:id="title" text="高校图书馆管理系统 - 管理员界面" BorderPane.alignment="CENTER" />

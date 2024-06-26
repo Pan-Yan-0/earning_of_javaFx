@@ -21,7 +21,7 @@ public class AdminMainController {
         try {
             // 加载添加书籍界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AddBookView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("AddBook"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -37,7 +37,7 @@ public class AdminMainController {
         try {
             // 加载编辑书籍界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/EditBookView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("EditBook"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -53,7 +53,7 @@ public class AdminMainController {
         try {
             // 加载删除书籍界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/DeleteBookView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("DeleteBook"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -69,7 +69,7 @@ public class AdminMainController {
         try {
             // 加载查找书籍界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/SearchBookView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 480);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("SearchBook"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -85,7 +85,7 @@ public class AdminMainController {
         try {
             // 加载查找读者信息界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/SearchReaderView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("SearchReader"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -101,7 +101,7 @@ public class AdminMainController {
         try {
             // 加载修改读者信息界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ModifyReaderView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("ModifyReader"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景
@@ -118,7 +118,7 @@ public class AdminMainController {
         try {
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminLoginView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) title.getScene().getWindow();
             stage.setTitle("AdminLogin"); // 设置窗口标题
             stage.setScene(scene); // 设置新的场景

@@ -56,7 +56,7 @@ public class LoginController {
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 // 加载新的FXML文件
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ReaderMainView.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 1080, 480);
+                Scene scene = new Scene(fxmlLoader.load(), 800, 430);
                 // 设置新场景
                 stage.setScene(scene);
                 stage.setTitle("ReaderMain");
@@ -114,7 +114,7 @@ public class LoginController {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminLoginView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("AdminLogin");
@@ -146,7 +146,7 @@ public class LoginController {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载注册界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/RegistReader.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("Regist");
@@ -165,7 +165,7 @@ public class LoginController {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载忘记密码界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ForgetPasswordView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("ForgetPassword");

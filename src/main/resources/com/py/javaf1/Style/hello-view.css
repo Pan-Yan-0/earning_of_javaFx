@@ -1,3 +1,5 @@
-.Label{
-
+.anchor {
+    -fx-background-image:url('../View/img_1.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
 }

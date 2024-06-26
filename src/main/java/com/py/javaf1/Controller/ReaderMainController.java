@@ -60,7 +60,7 @@ public class ReaderMainController {
             // 加载管理员登录界面
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View" +
                     ".fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             // 设置新场景
             stage.setScene(scene);
             stage.setTitle("Login");

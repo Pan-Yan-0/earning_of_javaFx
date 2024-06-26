@@ -2,7 +2,12 @@ package com.py.javaf1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,7 +17,8 @@ public class HelloApplication extends Application {
     ///com/py/javaf1/View/hello-view.fxml
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/Login-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+
+        Scene scene = new Scene(fxmlLoader.load(), 800, 430);
         stage.setTitle("ReaderLogin");
         stage.setScene(scene);
         stage.show();

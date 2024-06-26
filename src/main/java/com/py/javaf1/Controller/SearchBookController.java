@@ -140,7 +140,7 @@ public class SearchBookController {
     public void handleReturnAdminMain() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminMainView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320); // 创建新的场景
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430); // 创建新的场景
             Stage stage = (Stage) searchField.getScene().getWindow(); // 获取当前窗口
             stage.setTitle("AdminMain"); // 设置窗口标题
             stage.setScene(scene); // 切换场景到管理员主界面

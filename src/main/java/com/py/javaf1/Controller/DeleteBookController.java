@@ -141,7 +141,7 @@ public class DeleteBookController {
     public void handleReturnAdminMain(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminMainView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 430);
             Stage stage = (Stage) bookIDField.getScene().getWindow();
             stage.setTitle("AdminMain");
             stage.setScene(scene);

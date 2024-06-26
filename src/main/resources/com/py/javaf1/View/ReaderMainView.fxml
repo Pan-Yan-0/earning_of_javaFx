@@ -7,7 +7,11 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.ReaderMainController">
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="anchor" fx:controller="com.py.javaf1.Controller.ReaderMainController">
+    <stylesheets>
+        <URL value="@../Style/hello-view.css" />
+    </stylesheets>
     <left>
         <VBox spacing="10">
             <children>

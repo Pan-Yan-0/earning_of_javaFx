@@ -6,10 +6,11 @@ module com.py.javaf1 {
     requires org.kordamp.bootstrapfx.core;
     requires lombok;
 
-    opens com.py.javaf1.View to javafx.fxml;
+    opens com.py.javaf1.View to javafx.fxml,java.base;
 
     exports com.py.javaf1;
     exports com.py.javaf1.Controller;
+    opens com.py.javaf1.Style to java.base,javafx.fxml;
     opens com.py.javaf1.domain to javafx.base, javafx.fxml;
     opens com.py.javaf1.Controller to javafx.fxml;
 }
