@@ -17,16 +17,15 @@ import java.util.Objects;
 
 public class DeleteBookController {
     @FXML
-    private Label showDetail1;
+    private Label showDetail1; // 用于显示书籍的详细信息
     @FXML
-    private Label showDetail;
+    private Label showDetail; // 用于显示书籍的详细信息
     @FXML
-    private TextField bookIDField;
+    private TextField bookIDField; // 输入书籍编号的文本框
 
-    /*
-     * @TODO 这里缺少一个确认所有的学生归还才能删除的逻辑
-     *   也可以使用其他的方法
-     * */
+    /**
+     * 处理删除书籍事件的方法
+     */
     @FXML
     public void handleDeleteBook() {
         String bookID = bookIDField.getText();
@@ -80,6 +79,9 @@ public class DeleteBookController {
         }
     }
 
+    /**
+     * 处理查询书籍事件的方法
+     */
     @FXML
     public void handleSearchBook() {
         String bookID = bookIDField.getText();
@@ -120,6 +122,11 @@ public class DeleteBookController {
         }
     }
 
+    /**
+     * 显示提示框的方法
+     * @param title 提示框的标题
+     * @param message 提示框的内容
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -128,10 +135,12 @@ public class DeleteBookController {
         alert.showAndWait();
     }
 
+    /**
+     * 处理返回管理员主界面事件的方法
+     */
     public void handleReturnAdminMain(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                    "/AdminMainView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminMainView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             Stage stage = (Stage) bookIDField.getScene().getWindow();
             stage.setTitle("AdminMain");

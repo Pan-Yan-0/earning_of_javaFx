@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,26 +7,29 @@
 <?import java.lang.String?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.SearchBookController">
     <children>
+        <!-- 搜索书籍界面的顶部水平布局 -->
         <HBox spacing="10" alignment="CENTER">
             <children>
-                <Label text="搜索属性：" />
-                <ComboBox fx:id="attributeComboBox">
+                <Label text="搜索属性：" /> <!-- 标签：显示搜索属性 -->
+                <ComboBox fx:id="attributeComboBox"> <!-- 下拉框：选择搜索属性 -->
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="书籍编号" />
-                            <String fx:value="书名" />
-                            <String fx:value="作者" />
-                            <String fx:value="出版社" />
+                            <String fx:value="书籍编号" /> <!-- 书籍编号 -->
+                            <String fx:value="书名" /> <!-- 书名 -->
+                            <String fx:value="作者" /> <!-- 作者 -->
+                            <String fx:value="出版社" /> <!-- 出版社 -->
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <TextField fx:id="searchField" promptText="输入关键字" />
-                <Button text="搜索" onAction="#handleSearch" />
-                <Button text="查看所有书籍" onAction="#handleShowAll" />
+                <TextField fx:id="searchField" promptText="输入关键字" /> <!-- 文本框：输入搜索关键字 -->
+                <Button text="搜索" onAction="#handleSearch" /> <!-- 按钮：执行搜索操作 -->
+                <Button text="查看所有书籍" onAction="#handleShowAll" /> <!-- 按钮：显示所有书籍 -->
+                <Button text="返回管理员选择界面" onAction="#handleReturnAdminMain"/> <!-- 按钮：返回管理员界面 -->
             </children>
         </HBox>
         <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
             <columns>
+                <!-- 表格列定义 -->
                 <TableColumn fx:id="idColumn" text="书籍编号" />
                 <TableColumn fx:id="titleColumn" text="书名" />
                 <TableColumn fx:id="authorColumn" text="作者" />
@@ -40,6 +42,6 @@
         </TableView>
     </children>
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10" />
+        <Insets top="10" right="10" bottom="10" left="10" /> <!-- 边距设置 -->
     </padding>
 </VBox>

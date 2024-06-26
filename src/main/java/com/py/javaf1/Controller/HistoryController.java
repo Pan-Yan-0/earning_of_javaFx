@@ -11,30 +11,28 @@ import javafx.scene.control.TableView;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class HistoryController {
 
     @FXML
-    private TableView<BorrowRecordWrapper> historyTable;
+    private TableView<BorrowRecordWrapper> historyTable; // 表格视图控件，用于显示借阅记录
     @FXML
-    private TableColumn<BorrowRecordWrapper, String> readerIDColumn;
+    private TableColumn<BorrowRecordWrapper, String> readerIDColumn; // 读者编号列
     @FXML
-    private TableColumn<BorrowRecordWrapper, String> bookIDColumn;
+    private TableColumn<BorrowRecordWrapper, String> bookIDColumn; // 图书编号列
     @FXML
-    private TableColumn<BorrowRecordWrapper, String> borrowDateColumn;
+    private TableColumn<BorrowRecordWrapper, String> borrowDateColumn; // 借阅时间列
     @FXML
-    private TableColumn<BorrowRecordWrapper, String> returnDateColumn;
+    private TableColumn<BorrowRecordWrapper, String> returnDateColumn; // 归还时间列
 
-    private ObservableList<BorrowRecordWrapper> borrowData = FXCollections.observableArrayList();
+    private ObservableList<BorrowRecordWrapper> borrowData = FXCollections.observableArrayList(); // 存储借阅记录数据的列表
 
     @FXML
     private void initialize() {
-        setupTableColumns();
+        setupTableColumns(); // 设置表格列的单元格值工厂
         loadBorrowData(); // 加载借阅记录数据
     }
 
@@ -47,10 +45,9 @@ public class HistoryController {
 
     private void loadBorrowData() {
         List<BorrowRecordWrapper> records = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/py/javaf1/Data/BorrowRecord.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/py/javaf1/Data/BorrowRecord"))) {
             String line;
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             while ((line = reader.readLine()) != null) {
                 String[] details = line.split(",");
                 if (details.length >= 3) {
@@ -65,7 +62,7 @@ public class HistoryController {
             e.printStackTrace();
         }
 
-        filterBorrowRecords(records);
+        filterBorrowRecords(records); // 过滤借阅记录，仅显示当前读者的借阅记录
     }
 
     private void filterBorrowRecords(List<BorrowRecordWrapper> records) {
@@ -76,7 +73,7 @@ public class HistoryController {
                 filteredRecords.add(record);
             }
         }
-        borrowData.setAll(filteredRecords);
+        borrowData.setAll(filteredRecords); // 更新表格视图中的数据
         historyTable.setItems(borrowData);
     }
 }

@@ -13,26 +13,32 @@ import java.io.*;
 
 public class AddBookController {
     @FXML
-    private TextField bookIDField;
+    private TextField bookIDField; // 图书编号输入框
     @FXML
-    private TextField titleField;
+    private TextField titleField; // 书名输入框
     @FXML
-    private TextField authorField;
+    private TextField authorField; // 作者输入框
     @FXML
-    private TextField publisherField;
+    private TextField publisherField; // 出版社输入框
     @FXML
-    private TextField totalCopiesField;
+    private TextField totalCopiesField; // 总册数输入框
     @FXML
-    private TextField locationField;
+    private TextField locationField; // 现存地址输入框
 
+    /**
+     * 处理添加书籍事件的方法
+     */
     @FXML
     public void handleAddBook() {
+        // 获取输入框中的值
         String bookID = bookIDField.getText();
         String title = titleField.getText();
         String author = authorField.getText();
         String publisher = publisherField.getText();
         String totalCopies = totalCopiesField.getText();
         String location = locationField.getText();
+
+        // 检查输入框是否为空，并显示相应的提示框
         if (bookID.isEmpty()) {
             showAlert("Admin AddBook Error", "图书编号为空！！！！");
             return;
@@ -57,14 +63,12 @@ public class AddBookController {
             showAlert("Admin AddBook Error", "现存地址为空！！！！");
             return;
         }
+
         int totalCopie = Integer.parseInt(totalCopies);
         Book newBook = new Book(bookID, title, author, publisher, totalCopie, totalCopie, location, 0);
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader("src/main/java/com/py/javaf1/Data/BookData");
-            BufferedReader reader = new BufferedReader(fileReader);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/py/javaf1/Data/BookData"))) {
             String line;
-            int readerId = 0;
             while ((line = reader.readLine()) != null) {
                 String[] bookDetails = line.split(",");
                 if (bookDetails.length == 8) {
@@ -79,17 +83,16 @@ public class AddBookController {
                         return;
                     }
                 }
-                readerId++;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/com/py/javaf1/Data/BookData",
-                true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/com/py/javaf1/Data/BookData", true))) {
             writer.write(newBook.getBookID() + "," + newBook.getTitle() + "," + newBook.getAuthor() + "," + newBook.getPublisher() + "," + newBook.getTotalCopies() + "," + newBook.getAvailableCopies() + "," + newBook.getLocation() + "," + newBook.getBorrowCount());
             writer.newLine();
             showAlert("添加书籍成功", "书籍已成功添加！");
+            // 清空输入框
             bookIDField.setText("");
             titleField.setText("");
             authorField.setText("");
@@ -98,15 +101,16 @@ public class AddBookController {
             locationField.setText("");
         } catch (IOException e) {
             showAlert("错误", "写入文件时发生错误！");
-
         }
     }
 
+    /**
+     * 处理返回管理员主界面事件的方法
+     */
     @FXML
     public void handleReturnAdminMain() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                    "/AdminMainView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminMainView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             Stage stage = (Stage) bookIDField.getScene().getWindow();
             stage.setTitle("AdminMain");
@@ -116,6 +120,11 @@ public class AddBookController {
         }
     }
 
+    /**
+     * 显示提示框的方法
+     * @param title 提示框的标题
+     * @param message 提示框的内容
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

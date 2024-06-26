@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.py.javaf1.Controller.SearchBookController">
+    <children>
+        <HBox spacing="10" alignment="CENTER">
+            <children>
+                <Label text="搜索属性："/>
+                <ComboBox fx:id="attributeComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="书籍编号"/>
+                            <String fx:value="书名"/>
+                            <String fx:value="作者"/>
+                            <String fx:value="出版社"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <TextField fx:id="searchField" promptText="输入关键字"/>
+                <Button text="搜索" onAction="#handleSearch"/>
+                <Button text="查看所有书籍" onAction="#handleShowAll"/>
+            </children>
+        </HBox>
+        <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="书籍编号"/>
+                <TableColumn fx:id="titleColumn" text="书名"/>
+                <TableColumn fx:id="authorColumn" text="作者"/>
+                <TableColumn fx:id="publisherColumn" text="出版社"/>
+                <TableColumn fx:id="totalCopiesColumn" text="总共册数"/>
+                <TableColumn fx:id="availableCopiesColumn" text="在馆册数"/>
+                <TableColumn fx:id="locationColumn" text="现存地址"/>
+                <TableColumn fx:id="borrowCountColumn" text="借阅次数"/>
+            </columns>
+        </TableView>
+    </children>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+</VBox>
+

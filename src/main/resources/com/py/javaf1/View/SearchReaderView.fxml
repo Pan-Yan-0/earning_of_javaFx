@@ -18,6 +18,7 @@
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <GridPane hgap="10" vgap="10">
+        <!-- 查找方式 -->
         <Label text="查找方式:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <ComboBox fx:id="searchTypeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1">
             <items>
@@ -27,6 +28,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
+        <!-- 属性 -->
         <Label text="属性:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <ComboBox fx:id="attributeComboBox" GridPane.rowIndex="1" GridPane.columnIndex="1">
             <items>
@@ -40,13 +42,20 @@
                 </FXCollections>
             </items>
         </ComboBox>
+        <!-- 属性值 -->
         <Label text="属性值:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <TextField fx:id="attributeValueField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <!-- 是否有超期未还 -->
         <CheckBox fx:id="overdueCheckBox" text="是否有超期未还" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <!-- 是否有欠费 -->
         <CheckBox fx:id="debtCheckBox" text="是否有欠费" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <!-- 查找按钮 -->
         <Button text="查找" onAction="#handleSearchReader" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        <!-- 返回管理员选择界面按钮 -->
+        <Button text="返回管理员选择界面" onAction="#handleReturnAdminMain" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
     </GridPane>
 
+    <!-- 读者表格 -->
     <TableView fx:id="readerTable">
         <columns>
             <TableColumn fx:id="indexColumn" text="编号" />

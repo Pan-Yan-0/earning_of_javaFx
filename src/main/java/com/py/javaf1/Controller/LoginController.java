@@ -15,19 +15,28 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * LoginController类处理登录界面的用户交互
+ */
 public class LoginController {
-    public static String loginName = null;
-    public static String readerId = null;
-    @FXML
-    private TextField usernameField;
+    public static String loginName = null; // 当前登录的用户名
+    public static String readerId = null; // 当前登录的读者ID
 
     @FXML
-    private PasswordField passwordField;
+    private TextField usernameField; // 用户名输入框
 
+    @FXML
+    private PasswordField passwordField; // 密码输入框
+
+    /**
+     * 处理登录按钮点击事件
+     */
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
+        // 验证输入是否为空
         if (username.isEmpty()) {
             showAlert("Login Failed", "用户名为空！！！！！");
             return;
@@ -36,24 +45,22 @@ public class LoginController {
             showAlert("Login Failed", "密码为空！！！！！");
             return;
         }
+
         // 简单的身份验证逻辑，可以根据需要进行扩展
         if (efficacy(username, password)) {
-            showAlert("Login Successful", "Welcome, Reader!");
+            showAlert("Login Successful", "欢迎，读者！！");
             // 在这里可以跳转到读者主界面
             try {
                 loginName = username;
                 // 获取当前窗口
-
                 Stage stage = (Stage) usernameField.getScene().getWindow();
-                // 加载管理员登录界面
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                        "/ReaderMainView.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 720, 480);
+                // 加载新的FXML文件
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ReaderMainView.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1080, 480);
                 // 设置新场景
                 stage.setScene(scene);
                 stage.setTitle("ReaderMain");
                 stage.show();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -63,6 +70,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * 验证用户名和密码
+     * @param username 输入的用户名
+     * @param password 输入的密码
+     * @return 是否验证成功
+     */
     private boolean efficacy(String username, String password) {
         //读取文件
         try {
@@ -91,14 +104,16 @@ public class LoginController {
         }
     }
 
+    /**
+     * 切换到管理员登录界面
+     */
     @FXML
     protected void switchToAdminLogin() {
         try {
             // 获取当前窗口
             Stage stage = (Stage) usernameField.getScene().getWindow();
             // 加载管理员登录界面
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                    "/AdminLoginView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminLoginView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);
@@ -109,6 +124,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * 显示提示信息
+     * @param title 提示框标题
+     * @param message 提示信息内容
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -117,13 +137,15 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    /**
+     * 切换到注册界面
+     */
     public void switchToRegist() {
         try {
             // 获取当前窗口
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            // 加载管理员登录界面
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                    "/RegistReader.fxml"));
+            // 加载注册界面
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/RegistReader.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);
@@ -134,13 +156,15 @@ public class LoginController {
         }
     }
 
+    /**
+     * 切换到忘记密码界面
+     */
     public void switchToForgetPassword() {
         try {
             // 获取当前窗口
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            // 加载管理员登录界面
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View" +
-                    "/ForgetPasswordView.fxml"));
+            // 加载忘记密码界面
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/ForgetPasswordView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 320);
             // 设置新场景
             stage.setScene(scene);

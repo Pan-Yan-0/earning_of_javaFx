@@ -1,13 +1,18 @@
 package com.py.javaf1.Controller;
 
+import com.py.javaf1.HelloApplication;
 import com.py.javaf1.domain.Reader;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,46 +25,49 @@ import java.util.List;
 public class SearchReaderController {
 
     @FXML
-    private ComboBox<String> searchTypeComboBox;
+    private ComboBox<String> searchTypeComboBox; // 搜索类型下拉框
     @FXML
-    private ComboBox<String> attributeComboBox;
+    private ComboBox<String> attributeComboBox; // 属性下拉框
     @FXML
-    private TextField attributeValueField;
+    private TextField attributeValueField; // 属性值文本框
     @FXML
-    private CheckBox overdueCheckBox;
+    private CheckBox overdueCheckBox; // 是否有超期未还复选框
     @FXML
-    private CheckBox debtCheckBox;
+    private CheckBox debtCheckBox; // 是否有欠费复选框
     @FXML
-    private TableView<Reader> readerTable;
+    private TableView<Reader> readerTable; // 读者表格
     @FXML
-    private TableColumn<Reader, Integer> indexColumn;
+    private TableColumn<Reader, Integer> indexColumn; // 编号列
     @FXML
-    private TableColumn<Reader, String> readerIDColumn;
+    private TableColumn<Reader, String> readerIDColumn; // 读者编号列
     @FXML
-    private TableColumn<Reader, String> nameColumn;
+    private TableColumn<Reader, String> nameColumn; // 姓名列
     @FXML
-    private TableColumn<Reader, String> studentIDColumn;
+    private TableColumn<Reader, String> studentIDColumn; // 学号列
     @FXML
-    private TableColumn<Reader, Integer> borrowLimitColumn;
+    private TableColumn<Reader, Integer> borrowLimitColumn; // 可借数量列
     @FXML
-    private TableColumn<Reader, String> overdueColumn;
+    private TableColumn<Reader, String> overdueColumn; // 是否有超期未还列
     @FXML
-    private TableColumn<Reader, String> debtColumn;
+    private TableColumn<Reader, String> debtColumn; // 是否有欠费列
     @FXML
-    private TableColumn<Reader, Integer> overdueCountColumn;
+    private TableColumn<Reader, Integer> overdueCountColumn; // 超期未还数量列
     @FXML
-    private TableColumn<Reader, Double> debtAmountColumn;
+    private TableColumn<Reader, Double> debtAmountColumn; // 欠费金额列
 
-    private ObservableList<Reader> readerData = FXCollections.observableArrayList();
+    private ObservableList<Reader> readerData = FXCollections.observableArrayList(); // 读者数据
 
     @FXML
     private void initialize() {
+        // 初始化搜索类型下拉框
         searchTypeComboBox.setItems(FXCollections.observableArrayList("模糊查找", "全体查找"));
         searchTypeComboBox.setValue("模糊查找");
 
+        // 初始化属性下拉框
         attributeComboBox.setItems(FXCollections.observableArrayList("读者编号", "姓名", "学号", "可借数量", "是否有超期未还", "是否有欠费"));
         attributeComboBox.setValue("读者编号");
 
+        // 设置表格列的单元格值工厂
         indexColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(readerTable.getItems().indexOf(cellData.getValue()) + 1));
         readerIDColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getReaderID()));
         nameColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getName()));
@@ -70,19 +78,21 @@ public class SearchReaderController {
         overdueCountColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getHasOverdue()));
         debtAmountColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getHasDebt()));
 
+        // 设置表格数据
         readerTable.setItems(readerData);
     }
 
     @FXML
     private void handleSearchReader() {
+        // 清除表格数据
         readerData.clear();
-        String searchType = searchTypeComboBox.getValue();
-        String attribute = attributeComboBox.getValue();
-        String attributeValue = attributeValueField.getText().trim().toLowerCase();
-        boolean overdue = overdueCheckBox.isSelected();
-        boolean debt = debtCheckBox.isSelected();
+        String searchType = searchTypeComboBox.getValue(); // 获取搜索类型
+        String attribute = attributeComboBox.getValue(); // 获取属性
+        String attributeValue = attributeValueField.getText().trim().toLowerCase(); // 获取属性值并转换为小写
+        boolean overdue = overdueCheckBox.isSelected(); // 是否勾选超期未还
+        boolean debt = debtCheckBox.isSelected(); // 是否勾选欠费
 
-        List<Reader> matchingReaders = new ArrayList<>();
+        List<Reader> matchingReaders = new ArrayList<>(); // 匹配的读者列表
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/py/javaf1/Data/ReaderData"))) {
             String line;
@@ -140,4 +150,16 @@ public class SearchReaderController {
         alert.showAndWait();
     }
 
+    @FXML
+    public void handleReturnAdminMain() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/py/javaf1/View/AdminMainView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 320);
+            Stage stage = (Stage) debtCheckBox.getScene().getWindow();
+            stage.setTitle("AdminMain");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

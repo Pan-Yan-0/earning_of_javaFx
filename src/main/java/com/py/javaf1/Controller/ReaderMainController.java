@@ -24,12 +24,12 @@ public class ReaderMainController {
 
     @FXML
     private void handleShowSearchBooks() throws IOException {
-        loadContent("SearchBookView.fxml");
+        loadContent("SearchBookReader.fxml");
     }
 
     @FXML
     private void handleShowBorrowedBooks() throws IOException {
-        loadContent("BorrowedBooksView.fxml");
+        loadContent("BorrowedBooksReturnView.fxml");
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class ReaderMainController {
 
     @FXML
     private void handleShowRankings() throws IOException {
-        loadContent("RankingsView.fxml");
+        loadContent("BookRanking.fxml");
     }
 
     @FXML

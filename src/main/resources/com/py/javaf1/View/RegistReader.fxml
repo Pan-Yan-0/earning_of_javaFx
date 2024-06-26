@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.py.javaf1.Controller.RegistController"
             prefHeight="400.0" prefWidth="600.0">
     <center>
         <GridPane alignment="center" hgap="10" vgap="10">
-            <Label text="读者注册界面" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label text="用户名:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="学号:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="studentNumberField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-            <Label text="密码:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="重复密码:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <PasswordField fx:id="repeatPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-            <Button text="注册" onAction="#Regist" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="读者注册" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="用户名:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="学号:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="studentNumberField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="密码:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Label text="重复密码:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <PasswordField fx:id="repeatPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Button text="注册" onAction="#Regist" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <Label fx:id="Info" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
         </GridPane>
     </center>
     <bottom>
@@ -32,7 +28,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Button text="跳转到读者登录界面" onAction="#switchToLoginView" />
+            <Button text="已有账号？点击登录" onAction="#switchToLoginView"/>
         </HBox>
     </bottom>
 </BorderPane>

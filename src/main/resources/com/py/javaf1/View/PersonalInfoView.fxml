@@ -2,24 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
+<!-- 主布局容器VBox，设置了内边距和间距 -->
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.py.javaf1.Controller.PersonalInfoController" spacing="10"
       alignment="TOP_LEFT">
     <children>
         <GridPane>
+            <!-- 个人信息标题 -->
             <Label text="个人信息" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 
+            <!-- 姓名标签及其显示框 -->
             <Label text="姓名:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <Label fx:id="nameLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
+            <!-- 学号标签及其显示框 -->
             <Label text="学号:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <Label fx:id="studentIDLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
+            <!-- 可借数量标签及其显示框 -->
             <Label text="可借数量:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
             <Label fx:id="borrowLimitLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
+            <!-- 超期未还标签及其显示框 -->
             <Label text="超期未还:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
             <Label fx:id="hasOverdueLabel" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
+            <!-- 欠费标签及其显示框 -->
             <Label text="欠费:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
             <Label fx:id="hasDebtLabel" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
         </GridPane>

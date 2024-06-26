@@ -3,15 +3,15 @@ package com.py.javaf1.domain;
 import javafx.beans.property.*;
 
 public class BookWrapper {
-    private Book book;
-    private StringProperty bookID;
-    private StringProperty title;
-    private StringProperty author;
-    private StringProperty publisher;
-    private IntegerProperty totalCopies;
-    private IntegerProperty availableCopies;
-    private StringProperty location;
-    private IntegerProperty borrowCount;
+    private Book book; // 原始的 Book 对象
+    private StringProperty bookID; // 图书编号属性
+    private StringProperty title; // 图书名称属性
+    private StringProperty author; // 作者属性
+    private StringProperty publisher; // 出版社属性
+    private IntegerProperty totalCopies; // 总册数属性
+    private IntegerProperty availableCopies; // 可借册数属性
+    private StringProperty location; // 位置属性
+    private IntegerProperty borrowCount; // 借阅次数属性
 
     public BookWrapper(Book book) {
         this.book = book;

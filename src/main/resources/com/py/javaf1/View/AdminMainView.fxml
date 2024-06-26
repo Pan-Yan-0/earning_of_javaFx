@@ -6,14 +6,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.py.javaf1.Controller.AdminMainController"
             prefHeight="400.0" prefWidth="600.0">
     <top>
+        <!-- 标题标签，位于界面顶部 -->
         <Label fx:id="title" text="高校图书馆管理系统 - 管理员界面" BorderPane.alignment="CENTER" />
     </top>
     <center>
+        <!-- 中央的网格面板，包含多个按钮 -->
         <GridPane alignment="center" hgap="10" vgap="10">
             <Button text="添加书籍" onAction="#handleAddBook" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Button text="修改书籍" onAction="#handleEditBook" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -24,6 +26,7 @@
         </GridPane>
     </center>
     <bottom>
+        <!-- 底部的退出登录按钮 -->
         <Button text="退出登录" onAction="#handleLogout" BorderPane.alignment="CENTER" />
     </bottom>
-</BorderPane >
+</BorderPane>

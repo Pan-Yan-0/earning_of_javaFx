@@ -7,37 +7,47 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
+<!-- 主布局容器VBox，设置了内边距和间距 -->
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.py.javaf1.Controller.ModifyReaderController" spacing="10">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
     <GridPane hgap="10" vgap="10">
+        <!-- 读者编号输入框及其标签 -->
         <Label text="读者编号:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <TextField fx:id="readerIDField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
         <Button text="查找" onAction="#handleSearchReader" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
 
+        <!-- 姓名显示及其标签 -->
         <Label text="姓名:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <TextField fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1" editable="false"/>
         <Label fx:id="nowName" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
 
+        <!-- 学号显示及其标签 -->
         <Label text="学号:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <TextField fx:id="studentIDField" GridPane.rowIndex="2" GridPane.columnIndex="1" editable="false"/>
         <Label fx:id="nowStudentID" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
 
-        <Label text="以下的是可以被修改的" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <!-- 可修改信息的提示标签 -->
+        <Label text="以下的是可以被修改的" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
+        <!-- 可借数量输入框及其标签 -->
         <Label text="可借数量:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         <TextField fx:id="borrowLimitField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
         <Label fx:id="nowBorrowLimit" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
 
+        <!-- 超期未还数量输入框及其标签 -->
         <Label text="超期未还数:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
         <TextField fx:id="overdueField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
         <Label fx:id="nowOverdue" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
 
+        <!-- 欠费金额输入框及其标签 -->
         <Label text="欠费金额:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
         <TextField fx:id="debtField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
         <Label fx:id="nowDebt" GridPane.rowIndex="6" GridPane.columnIndex="2"/>
 
+        <!-- 保存修改和返回管理员选择界面按钮 -->
         <Button text="保存修改" onAction="#handleSaveChanges" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+        <Button text="返回管理员选择界面" onAction="#handleReturnAdminMain" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
     </GridPane>
 </VBox>
